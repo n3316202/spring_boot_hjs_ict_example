@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.ict.ex.vo.DeptVO;
@@ -17,7 +20,10 @@ import edu.ict.ex.vo.DeptVO;
 //@Bean + Dao 의 의미 
 @Repository
 public class DeptDao {
-
+	
+	@Autowired
+	private DataSource dataSource;
+	
 	public List<DeptVO> deptSelect() {
 
 		List<DeptVO> vos = new ArrayList<>();
@@ -26,18 +32,12 @@ public class DeptDao {
 		Statement statement = null;
 		ResultSet rs = null;
 
-		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String uid = "scott";
-		String upw = "tiger";
-
+	
 		String sql = "select * from dept";
 
 		try {
-			
-			Class.forName(driver);
-			
-			connetion = DriverManager.getConnection(url, uid, upw);
+						
+			connetion = dataSource.getConnection();
 
 			statement = connetion.createStatement();
 			rs = statement.executeQuery(sql);
