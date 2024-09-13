@@ -15,10 +15,15 @@ public interface BoardMapper {
 	
 	//게시판 삭제 == 삭제된 갯수 리턴
 	int delete(int bno);
+	
 	//게시판 insert
 	int insertBoard(@Param("board") BoardVO boardVO);
+	
 	//게시판 update
 	int updateBoard(BoardVO boardVO);
-
+	
+	//댓글 관련
+	public void updateShape(BoardVO boardVO);		
+	public void insertReply(BoardVO boardVO);
 	
 }

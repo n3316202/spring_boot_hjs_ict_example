@@ -12,4 +12,7 @@ public interface BoardService {
 	int writeBoard(BoardVO board);
 	int modifyBoard(BoardVO board);
 	
+	//댓글
+	void writeReply(BoardVO board);
+	
 }

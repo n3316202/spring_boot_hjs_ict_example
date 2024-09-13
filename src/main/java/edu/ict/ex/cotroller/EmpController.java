@@ -29,4 +29,6 @@ public class EmpController {
 		
 		return "emp/list";
 	}
+	
+
 }
