@@ -49,4 +49,10 @@
 		]]>
     </insert>
     
+    <update id="upHit">
+    	<![CDATA[
+	      	update mvc_board set bhit = bhit+1 where bid = #{bid}
+		]]>
+    </update>
+    
 </mapper>

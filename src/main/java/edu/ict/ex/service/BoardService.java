@@ -11,6 +11,7 @@ public interface BoardService {
 	int remove(int bno);
 	int writeBoard(BoardVO board);
 	int modifyBoard(BoardVO board);
+	int upHit(BoardVO board);
 	
 	//댓글
 	void writeReply(BoardVO board);

@@ -22,6 +22,9 @@ public interface BoardMapper {
 	//게시판 update
 	int updateBoard(BoardVO boardVO);
 	
+	//히트수
+	int upHit(BoardVO boardVO);
+	
 	//댓글 관련
 	public void updateShape(BoardVO boardVO);		
 	public void insertReply(BoardVO boardVO);
