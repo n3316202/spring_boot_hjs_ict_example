@@ -41,7 +41,24 @@ class BoardMapperTest {
 		
 		if( boardMapper.read(29) == null) {
 			System.out.println("제되로 삭제되었음");
-		}		
-				
+		}	
 	}
+	
+	@Test
+	void testUpdate() {
+		
+		BoardVO board = new BoardVO();
+		board.setBid(41);
+		board.setBname("홍길동");
+		board.setBtitle("홍길동");
+		board.setBcontent("홍길동");
+		
+		int count = boardMapper.updateBoard(board);
+		
+		System.out.println("업데이트 갯수" +  count);
+		
+		System.out.println(boardMapper.read(41));
+
+	}
+	
 }
