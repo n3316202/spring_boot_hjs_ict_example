@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import edu.ict.ex.page.Criteria;
+import edu.ict.ex.page.PageVO;
 import edu.ict.ex.service.BoardService;
 import edu.ict.ex.service.DeptSevice;
 import edu.ict.ex.vo.BoardVO;
@@ -33,6 +35,18 @@ public class BoardController {
 		
 		return "board/list";
 	}
+	
+	@GetMapping("/list2")
+	public String list2(Criteria criteria, Model model) {
+		log.info("list2().. ");
+			
+		model.addAttribute("boards", boardSevice.getListWithPaging(criteria));
+		int total = boardSevice.getTotal();
+		model.addAttribute("pageMaker", new PageVO(criteria,total));
+		
+		return "board/list2";
+	}
+	
 	
 	//http://localhost:8282/board/content_view?bid=29
 	@GetMapping("/content_view")
