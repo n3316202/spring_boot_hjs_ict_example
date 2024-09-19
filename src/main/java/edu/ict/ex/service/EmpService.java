@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import edu.ict.ex.mapper.DeptMapper;
 import edu.ict.ex.mapper.EmpMapper;
+import edu.ict.ex.page.Criteria;
+import edu.ict.ex.vo.BoardVO;
 import edu.ict.ex.vo.DeptVO;
 import edu.ict.ex.vo.EmpVO;
 
@@ -27,6 +29,16 @@ public class EmpService {
 		System.out.println("insert() ..");
 		
 		return empMapper.insert(empVO);
+	}
+	
+	
+	public int getTotal() {				
+		return empMapper.getTotalCount();
+	}
+
+
+	public List<EmpVO> getListWithPaging(Criteria cri) {		
+		return empMapper.getListWithPaging(cri);
 	}
 	
 
