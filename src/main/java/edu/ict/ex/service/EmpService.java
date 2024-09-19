@@ -9,6 +9,7 @@ import edu.ict.ex.mapper.DeptMapper;
 import edu.ict.ex.mapper.EmpMapper;
 import edu.ict.ex.page.Criteria;
 import edu.ict.ex.vo.BoardVO;
+import edu.ict.ex.vo.DeptEmpVO;
 import edu.ict.ex.vo.DeptVO;
 import edu.ict.ex.vo.EmpVO;
 
@@ -39,6 +40,16 @@ public class EmpService {
 
 	public List<EmpVO> getListWithPaging(Criteria cri) {		
 		return empMapper.getListWithPaging(cri);
+	}
+	
+	//조인 처리한 결과 
+	public List<EmpVO> getEmpDeptList() {		
+		return empMapper.getEmpDeptList();
+	}
+	
+	//조인 처리한 결과2 
+	public List<DeptEmpVO> getDeptEmpList() {		
+		return empMapper.getDeptEmpList();
 	}
 	
 

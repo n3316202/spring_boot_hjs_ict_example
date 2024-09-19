@@ -38,6 +38,27 @@ public class EmpController {
 		return "emp/list";
 	}
 	
+	@GetMapping("/list4")
+	public String list4(Model model) {
+		
+		System.out.println("list4()..");
+		
+		model.addAttribute("empDeptList",empService.getDeptEmpList());
+		
+		return "emp/list4";
+	}
+	
+	@GetMapping("/list3")
+	public String list3(Model model) {
+		
+		System.out.println("list3()..");
+		
+		model.addAttribute("empList",empService.getEmpDeptList());
+		
+		return "emp/list3";
+	}
+	
+	
 	@GetMapping("/insert_view")
 	public String insert_view(Model model) {
 		
