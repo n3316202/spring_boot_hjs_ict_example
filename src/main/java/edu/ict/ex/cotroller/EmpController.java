@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.ict.ex.service.DeptSevice;
 import edu.ict.ex.service.EmpService;
+import edu.ict.ex.vo.EmpVO;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -19,6 +21,8 @@ public class EmpController {
 	@Autowired
 	private EmpService empService;
 	
+	@Autowired
+	private DeptSevice deptService;
 	
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -28,6 +32,26 @@ public class EmpController {
 		model.addAttribute("empList",empService.getList());
 		
 		return "emp/list";
+	}
+	
+	@GetMapping("/insert_view")
+	public String insert_view(Model model) {		
+		System.out.println("insert_view()..");
+		
+		model.addAttribute("empList",empService.getList());
+		model.addAttribute("deptList",deptService.getList());
+		
+		
+		return "/emp/insert";
+	}
+	
+	@PostMapping("/insert")
+	public String insert(EmpVO empVO) {		
+		System.out.println("insert");
+		System.out.println(empVO);
+		empService.insert(empVO);
+		
+		return "redirect:/emp/list";
 	}
 	
 
