@@ -37,7 +37,7 @@
 		<a href="list2${pageMaker.makeQuery(pageMaker.startPage - 1) }"> << </a>
 	</c:if>
 	
-	<c:forEach var="idx" begin="${pageMaker.startPage}" end="${pageMaker.endPage}" >
+	<c:forEach var="idx" begin="1" end="10" >
 		<a href="list2${pageMaker.makeQuery(idx)}">${idx}</a>
 	</c:forEach>
 	
