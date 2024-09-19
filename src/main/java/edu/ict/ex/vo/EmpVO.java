@@ -24,4 +24,6 @@ public class EmpVO {
 	private int sal; //NUMBER(7,2) 
 	private int comm; //NUMBER(7,2) 
 	private int deptno; //NUMBER(2)
+	//날짜 input 입력을 위해서 
+	private String hiredate2;
 }
