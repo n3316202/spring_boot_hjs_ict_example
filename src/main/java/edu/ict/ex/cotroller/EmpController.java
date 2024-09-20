@@ -38,6 +38,16 @@ public class EmpController {
 		return "emp/list";
 	}
 	
+	@GetMapping("/list5")
+	public String list5(Model model) {
+		
+		System.out.println("list5()..");
+		
+		model.addAttribute("empList",empService.getEmpOneDeptList());
+		
+		return "emp/list5";
+	}
+	
 	@GetMapping("/list4")
 	public String list4(Model model) {
 		

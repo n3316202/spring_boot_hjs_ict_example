@@ -8,6 +8,7 @@ import edu.ict.ex.page.Criteria;
 import edu.ict.ex.vo.BoardVO;
 import edu.ict.ex.vo.DeptEmpVO;
 import edu.ict.ex.vo.DeptVO;
+import edu.ict.ex.vo.EmpDeptVO;
 import edu.ict.ex.vo.EmpSalgradeVO;
 import edu.ict.ex.vo.EmpVO;
 
@@ -23,6 +24,9 @@ public interface EmpMapper {
 	
 	//조인 처리 두번째 방법
 	public List<DeptEmpVO> getDeptEmpList(); 
+	
+	//조인처리 일대일 처리
+	public List<EmpDeptVO> getEmpOneDeptList(); 
 	
 	
 	//페이징 관련
