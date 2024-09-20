@@ -9,8 +9,8 @@ import edu.ict.ex.vo.BoardVO;
 import edu.ict.ex.vo.DeptEmpVO;
 import edu.ict.ex.vo.DeptVO;
 import edu.ict.ex.vo.EmpDeptVO;
-import edu.ict.ex.vo.EmpSalgradeVO;
 import edu.ict.ex.vo.EmpVO;
+import edu.ict.ex.vo.join.EmpSalgradeVO;
 
 //마이바티스용 인터페이스라는걸 알려주는 애노테이션
 @Mapper
@@ -19,21 +19,13 @@ public interface EmpMapper {
 	public List<EmpVO> getList();
 	public int insert(EmpVO empVO);
 	
-	//조인 처리 첫번째 방법
-	public List<EmpVO> getEmpDeptList(); 
-	
-	//조인 처리 두번째 방법
-	public List<DeptEmpVO> getDeptEmpList(); 
-	
-	//조인처리 일대일 처리
-	public List<EmpDeptVO> getEmpOneDeptList(); 
-	
 	
 	//페이징 관련
 	int getTotalCount();
 	List<EmpVO> getListWithPaging(Criteria cri);
 	
-	//
-	public List<EmpSalgradeVO> getEmpSalgrade();
+	//연습문제 join 처리
+	
+	List<EmpSalgradeVO> getEmpSalgrade();
 	
 }

@@ -28,11 +28,11 @@
     </select>
     
     
-    <select id="getEmpDeptList" resultType="EmpVO">
-    	<![CDATA[
-       		select * from emp, dept where emp.deptno = dept.deptno
-        ]]>
-    </select>  
+   <resultMap id="deptMap" type="DeptVO">
+        <result property="deptno" column="deptno"/>
+    	<result property="loc" column="loc"/>
+    	<result property="dname" column="dname"/>    
+   </resultMap>     
     
     <resultMap id="empMap" type="EmpVO" >
     	<id property="empno" column="empno"/>
@@ -45,73 +45,21 @@
     	<result property="deptno" column="deptno"/>
     </resultMap>
     
-    <resultMap id="detpMap" type="DeptEmpVO">
-    	<result property="deptno" column="deptno"/>
-    	<result property="dname" column="dname"/>
-    	<result property="loc" column="loc"/>
-    	<collection property="empList" resultMap="empMap"></collection>
-    </resultMap>
-    
-   <!--  절대 resultType 으로 하지 말것 -->
-    <select id="getDeptEmpList" resultMap="detpMap">
-    	<![CDATA[
-       		select * from emp, dept where emp.deptno = dept.deptno
-        ]]>
-    </select>
-    
     <resultMap id="salgradeMap" type="SalgradeVO">
         <result property="grade" column="grade"/>
     	<result property="losal" column="losal"/>
     	<result property="hisal" column="hisal"/>    
     </resultMap>
     
-
-    
-    <resultMap id="empSalMap" type="EmpSalgradeVO">
-        <id property="empno" column="empno"/>
-    	<result property="ename" column="ename"/>
-    	<result property="job" column="job"/>
-    	<result property="mgr" column="mgr"/>
-    	<result property="hiredate" column="hiredate"/>
-    	<result property="sal" column="sal"/>
-    	<result property="comm" column="comm"/>
-    	<result property="deptno" column="deptno"/>
-    	<association property="salgrade" resultMap="salgradeMap"></association>
-    	<association property="dept" resultMap="deptOneMap"></association>
+    <resultMap  id="empSalgradeMap" type="EmpSalgradeVO">
+    	<association property="emp" resultMap="empMap"></association>
+    	<association property="salgrade" resultMap="salgradeMap"></association>    
     </resultMap>
-        
-    <select id="getEmpSalgrade" resultMap="empSalMap">
+    
+    <select id="getEmpSalgrade" resultMap="empSalgradeMap">
     	<![CDATA[
-       		select * from emp e, dept d, salgrade s where e.deptno=d.deptno and e.sal between s.losal and s.hisal
+        	select * from emp e,  salgrade s where e.sal between s.losal and s.hisal
         ]]>
-    </select>
-   
-   <!-- EMP DEPT 일대일 매핑 -->
-    
-   <resultMap id="deptOneMap" type="DeptVO">
-        <result property="deptno" column="deptno"/>
-    	<result property="loc" column="loc"/>
-    	<result property="dname" column="dname"/>    
-   </resultMap>
-    
-   <resultMap id="empDeptMap" type="EmpDeptVO" >
-    	<id property="empno" column="empno"/>
-    	<result property="ename" column="ename"/>
-    	<result property="job" column="job"/>
-    	<result property="mgr" column="mgr"/>
-    	<result property="hiredate" column="hiredate"/>
-    	<result property="sal" column="sal"/>
-    	<result property="comm" column="comm"/>
-    	<result property="deptno" column="deptno"/>
-    	<association property="dept" resultMap="deptOneMap"></association>
-   </resultMap>
-	
-	   <!--  절대 resultType 으로 하지 말것 -->
-    <select id="getEmpOneDeptList" resultMap="empDeptMap">
-    	<![CDATA[
-       		select * from emp, dept where emp.deptno = dept.deptno
-        ]]>
-    </select>
-    
+    </select> 
     
 </mapper>
