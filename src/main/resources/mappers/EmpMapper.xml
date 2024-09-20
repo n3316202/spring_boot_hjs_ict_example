@@ -62,4 +62,16 @@
         ]]>
     </select> 
     
+    <resultMap  id="empDeptSalMap" type="EmpDeptSalgradeVO">
+    	<association property="emp" resultMap="empMap"></association>
+    	<association property="dept" resultMap="deptMap"></association>
+    	<association property="salgrade" resultMap="salgradeMap"></association>    
+    </resultMap>
+    
+   <select id="getEmpDeptSalgrade" resultMap="empDeptSalMap">
+    	<![CDATA[
+        	select * from emp e, dept d, salgrade s where e.deptno=d.deptno and e.sal between s.losal and s.hisal
+        ]]>
+    </select> 
+    
 </mapper>
