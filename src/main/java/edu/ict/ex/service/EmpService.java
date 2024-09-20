@@ -13,6 +13,7 @@ import edu.ict.ex.vo.DeptEmpVO;
 import edu.ict.ex.vo.DeptVO;
 import edu.ict.ex.vo.EmpDeptVO;
 import edu.ict.ex.vo.EmpVO;
+import edu.ict.ex.vo.join.EmpDeptSalgradeVO;
 import edu.ict.ex.vo.join.EmpSalgradeVO;
 
 //Command 계층 = 비지니스 로직
@@ -47,6 +48,11 @@ public class EmpService {
 	//조인 처리
 	public List<EmpSalgradeVO> getEmpSalgrade(){
 		return empMapper.getEmpSalgrade();
+	}
+	
+	//조인 처리 Emp & Dept & salgrade
+	public List<EmpDeptSalgradeVO> getEmpDeptSalgrade(){
+		return empMapper.getEmpDeptSalgrade();
 	}
 	
 
