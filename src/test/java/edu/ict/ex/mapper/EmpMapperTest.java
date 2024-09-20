@@ -1,7 +1,5 @@
 package edu.ict.ex.mapper;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 
 import org.junit.jupiter.api.Disabled;
@@ -10,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import edu.ict.ex.page.Criteria;
-import edu.ict.ex.vo.BoardVO;
 import edu.ict.ex.vo.EmpVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +18,12 @@ class EmpMapperTest {
 	@Autowired
 	private EmpMapper mapper;
 
+	@Test
+	void testGetEmpSalgrade() {
+		System.out.println(mapper.getEmpSalgrade());
+	}
+	
+	@Disabled
 	@Test
 	void testGetDeptEmpList() {
 		System.out.println(mapper.getDeptEmpList());
