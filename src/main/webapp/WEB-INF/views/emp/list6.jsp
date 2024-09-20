@@ -27,7 +27,7 @@
 			<td>${vo.emp.job}</td>
 			<td>${vo.emp.mgr}</td>
 			<td>${vo.emp.hiredate}</td>
-			<td><fmt:formatNumber value="${emp.sal}" type="number"/></td>
+			<td><fmt:formatNumber value="${vo.emp.sal}" type="number"/></td>
                 <!-- 숫자 1000을 1,000으로 표시하는 태그 -->
 			<td>${vo.salgrade.grade}</td>
 		</tr>
