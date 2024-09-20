@@ -24,8 +24,7 @@ public interface EmpMapper {
 	int getTotalCount();
 	List<EmpVO> getListWithPaging(Criteria cri);
 	
-	//연습문제 join 처리
-	
+	//연습문제 join 처리	
 	List<EmpSalgradeVO> getEmpSalgrade();
 	
 }
