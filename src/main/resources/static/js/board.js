@@ -61,11 +61,30 @@ let boardService = function(){
 	 			
 	 		});		
 	  }
+	  
+	  function del(bid){	 		
+
+	   	$.ajax({
+	   			type:"DELETE",
+	   			url: "/boards/" + bid,
+	   			success : function(result) {
+	  				
+					console.log("삭제된 갯수" + result)
+	  				
+
+	   			},
+	   			error:function(e){
+	   				console.log(e);
+	   			}
+	   			
+	   		});		
+	    }
 	
 	
 	return {
 		list : list,
 		get : get,
-		add : add  		
+		add : add,
+		del : del  		
 	}
 };

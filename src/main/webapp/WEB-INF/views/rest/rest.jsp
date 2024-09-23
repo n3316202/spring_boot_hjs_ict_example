@@ -22,8 +22,11 @@ $(document).ready(function(){
 		btitle : "음매에 ~~~"
 	}
 	
-	board.add(boardObj);
+	//board.add(boardObj);
 	
+	board.del(1080);
+	board.del(1086);
+
 	
 	
 		

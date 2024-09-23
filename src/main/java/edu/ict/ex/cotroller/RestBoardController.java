@@ -3,6 +3,8 @@ package edu.ict.ex.cotroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import edu.ict.ex.vo.BoardVO;
 import lombok.extern.slf4j.Slf4j;
 import oracle.jdbc.proxy.annotation.Post;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -85,23 +88,67 @@ public class RestBoardController {
 	
 	//     /boards/
 	//@RequestBody json을 자바 객체로 변환
+//	@PostMapping("/") 
+//	public String write(@RequestBody BoardVO board ){
+//		log.info("write..");
+//		log.info("board" + board);
+//		
+//		String words = "SUCCESS";
+//		
+//		try {
+//			boardService.writeBoard(board);
+//				
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			 words = "FAIL";
+//		}
+//		
+//				
+//		return  words;
+//	}
+	
 	@PostMapping("/") 
-	public String write(@RequestBody BoardVO board ){
+	public ResponseEntity<String> write(@RequestBody BoardVO board ){
+		
 		log.info("write..");
 		log.info("board" + board);
 		
-		String words = "SUCCESS";
+		ResponseEntity<String> entity = null;
 		
 		try {
 			boardService.writeBoard(board);
-				
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);	
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-			 words = "FAIL";
+			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);	
 		}
+						
+		return  entity;
+	}
+	
+	@DeleteMapping("/{bid}") 
+	public ResponseEntity<String> delete(BoardVO board){
 		
-				
-		return  words;
+		log.info("delete..");
+		log.info("board" + board);
+		
+		ResponseEntity<String> entity = null;
+		
+		try {
+			int rn = boardService.remove(board.getBid());
+			// 삭제가 성공하면 삭제된 갯수 출력
+			log.info("delete 넘어온 숫자:::::" + rn);
+			
+			entity = new ResponseEntity<String>(String.valueOf(rn), HttpStatus.OK);	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			// 삭제가 실패하면 실패 상태메시지 저장
+			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);	
+		}
+						
+		return  entity;
 	}
 	
 	
