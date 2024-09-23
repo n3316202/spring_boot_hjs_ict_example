@@ -6,32 +6,32 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/board.js"></script>
+
 <script type="text/javascript">
-	$(document).ready(function(){
+$(document).ready(function(){
 		
-		function list(){
-			
-			$.ajax({
-				type:"GET",
-				url: "${pageContext.request.contextPath}/boards/list",
-				success : function(result) {
-					console.log(result);
-				},
-				error:function(e){
-					console.log(e);
-				}
-				
-			});
-		
-		}
-		
-		list();
-		
-		
-	});
+	let board = boardService();
+	//board.list();
+	//board.get(1021)
 	
+	let boardObj = {
+		bname : "아햏햏",
+		bcontent : "아햏햏하오",
+		btitle : "음매에 ~~~"
+	}
+	
+	board.add(boardObj);
+	
+	
+	
+		
+});
 
 </script>
+
+
 
 </head>
 <body>
