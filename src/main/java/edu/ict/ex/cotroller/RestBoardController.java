@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 
 //RestController 란 기존의 controller의 속성하고는 판이하게 다름
@@ -70,6 +71,15 @@ public class RestBoardController {
 		System.out.println("아이디==========" +  boardVO);
 				
 		return boardVO;
+	}
+	
+	
+	@GetMapping("/rest") // 경로 변수 
+	public ModelAndView rest(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("rest/rest");
+				
+		return  mv;
 	}
 	
 	
