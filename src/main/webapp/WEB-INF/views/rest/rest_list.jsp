@@ -70,7 +70,23 @@ $(document).ready(function(){
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(document).on("click","#list-table .btn_delete", function(){
+		console.log($(this).attr("id"))
+		
+		$(this).parent().parent().remove();
+		
+		let board = boardService();
+		board.del($(this).attr("id"));
+		
+	});
+	
+	
+});
 
+</script>
 
 </head>
 <body>
