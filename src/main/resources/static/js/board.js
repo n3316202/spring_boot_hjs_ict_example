@@ -79,12 +79,33 @@ let boardService = function(){
 	   			
 	   		});		
 	    }
+		
+		function modify(board){	 		
+
+		 	$.ajax({
+		 			type:"PUT",
+		 			url: "/boards/",
+					contentType:'application/json; charset=utf-8',
+					data:JSON.stringify(board),
+		 			success : function(result) {
+						
+					console.log("삭제된 갯수" + result)
+						
+
+		 			},
+		 			error:function(e){
+		 				console.log(e);
+		 			}
+		 			
+		 		});		
+		  }
 	
 	
 	return {
 		list : list,
 		get : get,
 		add : add,
-		del : del  		
+		del : del,
+		modify : modify  		
 	}
 };

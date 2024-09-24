@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -116,7 +117,9 @@ public class RestBoardController {
 		ResponseEntity<String> entity = null;
 		
 		try {
+			
 			boardService.writeBoard(board);
+			
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);	
 			
 		} catch (Exception e) {
@@ -151,5 +154,26 @@ public class RestBoardController {
 		return  entity;
 	}
 	
+	@PutMapping("/") 
+	public ResponseEntity<String> modify(@RequestBody BoardVO board ){
+		
+		log.info("modify..");
+		log.info("board" + board);
+		
+		ResponseEntity<String> entity = null;
+		
+		try {
+			
+			int rn = boardService.modifyBoard(board);
+			
+			entity = new ResponseEntity<String>(String.valueOf(rn), HttpStatus.OK);	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);	
+		}
+						
+		return  entity;
+	}
 	
 }
