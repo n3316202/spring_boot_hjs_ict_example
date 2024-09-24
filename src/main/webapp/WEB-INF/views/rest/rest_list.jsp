@@ -27,7 +27,8 @@ $(document).ready(function(){
 						"<td>" + "이름" + "</td>"+
 						"<td>" + "제목" + "</td>"+
 						"<td>" + "날짜" + "</td>"+				
-						"<td>" + "히트" + "</td>"
+						"<td>" + "히트" + "</td>"+
+						"<td>" + "삭제" + "</td>"
 			}).appendTo("#list-table") // 이것을 테이블에 붙임
 			
 			if(result.length <1){
