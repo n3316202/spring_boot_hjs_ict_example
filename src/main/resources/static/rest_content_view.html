@@ -34,8 +34,48 @@ $(document).ready(function(){
 	
 	
 });
+</script>
 
-
+<script type="text/javascript">
+	$(document).ready(function (){
+		
+		$("#updateForm").submit(function(event){
+			//prevendDefault()는 href로 연결해 주지 않고 단순히 click에 대한 처리를 하도록 해준다.
+			
+			event.preventDefault();
+			console.log("ajax 호출전"); 
+			
+	    	var bname = $("#input_bname").val();
+	    	var btitle = $("#input_btitle").val();
+	    	var bcontent = $("#textarea_bcontent").text();
+	    	var bid = $("#input_hidden").val();
+	    	
+	        var form = {
+	        		bid: bid,
+	        		bname: bname,
+	        		btitle: btitle,
+	        		bcontent: bcontent
+	        };
+	    	
+			$.ajax({
+			    type : "PUT",
+			    url : "/boards/",
+			    cashe:false,
+			    contentType:'application/json; charset=utf-8',
+			    data: JSON.stringify(form), 
+			    success: function (result) {       
+			           console.log(result); 
+			           
+					   $(location).attr('href', '/boards/rest');  
+					   //location.href = "/boards/rest";	
+			    },
+			    error: function (e) {
+			        console.log(e);
+			    }
+			})
+			 
+		});
+	});	
 </script>
 
 
