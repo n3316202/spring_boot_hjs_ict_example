@@ -32,13 +32,18 @@ let boardService = function(){
 		});		
 	} //list()
 	
-	function get(id){	 		
+	function get(id,callback){	 		
 
 		$.ajax({
 				type:"GET",
 				url: "/boards/" + id,
 				success : function(result) {
 					console.log(result);
+					
+					if(callback){
+						callback(result);
+					}
+					
 				},
 				error:function(e){
 					console.log(e);
