@@ -51,8 +51,8 @@ $(document).ready(function(){
 	    	var bid = $("#input_hidden").val();
 	    	
 	        var form = {
-	        		bid: bid,
-	        		bname: bname,
+	        		bid: $("#input_bname").val(),
+	        		bname: $("#input_btitle").val(),
 	        		btitle: btitle,
 	        		bcontent: bcontent
 	        };
@@ -67,7 +67,7 @@ $(document).ready(function(){
 			           console.log(result); 
 			           
 					   $(location).attr('href', '/boards/rest');  
-					   //location.href = "/boards/rest";	
+					   windows.location.href = "/boards/rest";	
 			    },
 			    error: function (e) {
 			        console.log(e);
