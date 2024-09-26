@@ -2,6 +2,7 @@ package edu.ict.ex.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,7 +15,10 @@ import edu.ict.ex.vo.UserVO;
 public interface UserMapper {
 	UserVO getUser(String username);
 	
+	@Insert("insert into users(username,password) VALUES (#{username},#{password})")
 	int insertUser(UserVO userVO);
+	
+	@Insert("insert into authorities(username,authority) values(#{username},'ROLE_USER')")
 	int insertAuthorities(UserVO userVO);
 	
 }
