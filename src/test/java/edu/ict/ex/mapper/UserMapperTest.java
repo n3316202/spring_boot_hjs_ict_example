@@ -42,13 +42,13 @@ class UserMapperTest {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@Disabled
+	//@Disabled
 	@Test
 	void testInsertUser() {
 		
 		UserVO user = new UserVO();
-		user.setUsername("admin2");
-		user.setPassword(passwordEncoder.encode("admin2"));
+		user.setUsername("user2");
+		user.setPassword(passwordEncoder.encode("user2"));
 		user.setEnabled("1");
 		
 		userMapper.insertUser(user);
