@@ -1,5 +1,6 @@
 package edu.ict.ex.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 
 //import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -18,10 +19,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AnyRequestMatcher;
 
+import edu.ict.ex.security.CustomUserDetailsService;
+
 @Configuration
 @EnableWebSecurity // 스프링 시큐리티 필터가 스프링 필터체인에 등록됨
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	 @Autowired
+	 private CustomUserDetailsService customUserDetailsService;
+	 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		// web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
@@ -53,10 +59,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	    
-		auth.inMemoryAuthentication()
-	        .withUser("user").password("{noop}user").roles("USER").
-	        and()
-	        .withUser("admin").password("{noop}admin").roles("ADMIN");
+//		auth.inMemoryAuthentication()
+//	        .withUser("user").password("{noop}user").roles("USER").
+//	        and()
+//	        .withUser("admin").password("{noop}admin").roles("ADMIN");
+		
+		auth.userDetailsService(customUserDetailsService)
+				.passwordEncoder(passwordEncoder());
 	
 	}
 	
