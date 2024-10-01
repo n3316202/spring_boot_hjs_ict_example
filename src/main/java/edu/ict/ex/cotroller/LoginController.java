@@ -4,10 +4,12 @@ import java.security.Principal;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import edu.ict.ex.security.UserDetailsVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,24 +31,23 @@ public class LoginController {
 			System.out.println(principal);
 			System.out.println(principal.getName());
 			System.out.println(principal);
+
+		
 		}
 		
 		if(authentication != null) {
 			System.out.println(authentication);
 			System.out.println(authentication.getName());
-			System.out.println(authentication.getAuthorities());		
+			System.out.println(authentication.getAuthorities());	
+			
+			UserDetailsVO userDetails = (UserDetailsVO) authentication.getPrincipal();
+			System.out.println(userDetails.getCart());
 		}
-		
-		
+				
 		//1.SpringContextHolder를 통하여 가져오는 방법(일반적인 빈에서 사용 할수있음 )		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		System.out.println(auth.getName());
-		System.out.println(auth.getAuthorities());		
-		
-				
-		
-		
-		
+		System.out.println(auth.getAuthorities());			
 		
 		return "redirect:/";
 	}	

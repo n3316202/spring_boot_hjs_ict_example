@@ -99,11 +99,9 @@ public class TxService {
 	
 	
 	
-	public void checkExample() throws RuntimeException {
-		
+	public void checkExample() throws RuntimeException {		
 		//File file = new File("aa.txt");		
-		//Scanner scanner = new Scanner(file);
-		
+		//Scanner scanner = new Scanner(file);		
 	}
 	
 	public void useCheckException() {
