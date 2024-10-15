@@ -13,10 +13,12 @@ import edu.ict.ex.page.Criteria;
 import edu.ict.ex.page.PageVO;
 import edu.ict.ex.service.BoardService;
 import edu.ict.ex.service.DeptSevice;
+import edu.ict.ex.vo.BoardPageVO;
 import edu.ict.ex.vo.BoardVO;
 import lombok.extern.slf4j.Slf4j;
 import oracle.jdbc.proxy.annotation.Post;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +42,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/boards")
 public class RestBoardController {
 
@@ -48,10 +51,17 @@ public class RestBoardController {
 	
 	//자바객체를 json으로 바꿔서 서비스 하고 있음
 	@GetMapping("/list")
-	public List<BoardVO> list(){
+	public BoardPageVO list(Criteria criteria){
 		log.info("list() ..");
 		
-		return boardService.getList();		
+		BoardPageVO vo = new BoardPageVO();
+		vo.setBoards(boardService.getListWithPaging(criteria));
+		
+		
+		int total = boardService.getTotal();
+		vo.setPage(new PageVO(criteria,total));
+		
+		return vo;
 	}
 	
 	//특정 게시판 번호를 받으면 해당 게시판 정보 서비스

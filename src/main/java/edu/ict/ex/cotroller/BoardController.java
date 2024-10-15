@@ -28,8 +28,7 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public String list(Model model) {
-		log.info("list().. ");
-	
+		log.info("list().. ");	
 		
 		model.addAttribute("boards",boardSevice.getList());
 		
@@ -52,7 +51,6 @@ public class BoardController {
 	@GetMapping("/content_view")
 	public String content_view(BoardVO boardVO,Model model) {
 		log.info("content_view().. ");
-	
 		
 		model.addAttribute("content_view",boardSevice.get(boardVO.getBid()));
 		
