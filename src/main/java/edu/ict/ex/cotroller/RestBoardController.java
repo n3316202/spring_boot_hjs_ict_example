@@ -55,9 +55,9 @@ public class RestBoardController {
 		log.info("list() ..");
 		
 		BoardPageVO vo = new BoardPageVO();
+		
 		vo.setBoards(boardService.getListWithPaging(criteria));
-		
-		
+			
 		int total = boardService.getTotal();
 		vo.setPage(new PageVO(criteria,total));
 		
